@@ -8,6 +8,15 @@
 <h1 th:text="'Welcome ' + ${message} + ' :)'"/>
 
 <div class="js-dramon"></div>
+
 </body>
+<script src="node_modules/grunt-traceur/node_modules/traceur/bin/traceur-runtime.js"></script>
 <script src="js/app.min.js"></script>
+<script>
+    var MainApp = System.get('js/src/es5/main').MainApp;
+    document.addEventListener("DOMContentLoaded", function(){
+        (new MainApp()).run();
+    }, false);
+
+</script>
 </html>

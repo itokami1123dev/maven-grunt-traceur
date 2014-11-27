@@ -39,6 +39,15 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- ここから -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>springloaded</artifactId>
+                        <version>1.2.0.RELEASE</version>
+                    </dependency>
+                </dependencies>
+                <!-- ここまで -->
             </plugin>
             <plugin>
                 <groupId>pl.allegro</groupId>
@@ -62,6 +71,7 @@
                             </gruntOptions>
                         </configuration>
                         <goals>
+                            <goal>create-resources</goal>
                             <goal>npm</goal>
                             <goal>grunt</goal>
                         </goals>

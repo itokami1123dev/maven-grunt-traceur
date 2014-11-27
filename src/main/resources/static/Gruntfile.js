@@ -10,9 +10,22 @@ module.exports = function (grunt) {
             },
             dev: {}
         },
+        traceur: {
+            options: {
+                experimental: true
+            },
+            custom: {
+                files: [{
+                    expand: true,
+                    cwd: 'js/src/es6',
+                    src: ['**/*.js'],
+                    dest: 'js/src/es5'
+                }]
+            }
+        },
         concat: {
             files: {
-                src: ['js/src/namespace.js', 'js/src/**/*.js', 'js/src/main.js'],
+                src: ['js/src/es5/**/*.js'],
                 dest: 'js/app.min.js'
             }
         },
@@ -45,7 +58,8 @@ module.exports = function (grunt) {
         mavenDist: {
             options: {
                 warName: "classes",
-                deliverables: ["js/**/*.min.js"]
+                deliverables: ["js/**/*.js",
+                    "node_modules/grunt-traceur/node_modules/traceur/bin/traceur-runtime.js"]
             }
             ,
             dev: {}
@@ -55,9 +69,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-maven');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-traceur');
 
     grunt.registerTask('beforeClean', ['clean:before']);
 
-    grunt.registerTask('default', ['mavenPrepare', 'concat', 'clean:after', 'mavenDist']);
+    grunt.registerTask('default', ['mavenPrepare', 'traceur', 'concat', 'mavenDist']);
 }
 ;
