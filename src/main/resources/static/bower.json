@@ -1,0 +1,16 @@
+{
+  "name": "maven-grunt-tarceur",
+  "version": "0.0.1",
+  "homepage": "https://github.com/itokami1123dev/maven-grunt-traceur",
+  "authors": [
+    "test"
+  ],
+  "description": "hello",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "underscore": "~1.7.0",
+    "backbone": "~1.1.2"
+  }
+}

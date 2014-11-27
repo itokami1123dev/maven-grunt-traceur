@@ -58,8 +58,11 @@ module.exports = function (grunt) {
         mavenDist: {
             options: {
                 warName: "classes",
-                deliverables: ["js/**/*.js",
-                    "node_modules/grunt-traceur/node_modules/traceur/bin/traceur-runtime.js"]
+                deliverables: [
+                    "js/**/*.js",
+                    "node_modules/grunt-traceur/node_modules/traceur/bin/traceur-runtime.js",
+                    "bower_components/**/*"
+                ]
             }
             ,
             dev: {}
