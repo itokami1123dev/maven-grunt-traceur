@@ -9,6 +9,7 @@ export class BaseModel {
 
     /**
      * 通知先登録
+     * @param {function} callback
      */
     addListner(callback) {
         this.listner.push(callback);
@@ -18,8 +19,6 @@ export class BaseModel {
      * 通知
      */
     notifyListeners() {
-        this.listner.forEach(function (callback) {
-            callback();
-        })
+        this.listner.forEach(callback=>callback());
     }
 }
