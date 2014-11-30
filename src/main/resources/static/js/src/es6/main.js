@@ -1,6 +1,8 @@
-import {Doramon} from './robo/Doramon';
+import {Salary} from './model/Salary';
+import {SalaryInputCtrl} from './controller/SalaryInputCtrl';
+import {SalaryResultCtrl} from './controller/SalaryResultCtrl';
 
-export class MainApp {
+export class Main {
     /**
      * コンストラクター
      */
@@ -8,11 +10,19 @@ export class MainApp {
     }
 
     /**
-     * めそっどー
+     * 起動処理
      */
     run() {
-        var doramon = new Doramon("js-dramon");
-        doramon.say("hello nobicho");
+        var salary = new Salary();
+        var models = {
+            salary
+        };
+
+        new SalaryInputCtrl('js-view-salary-input', models);
+        new SalaryResultCtrl('js-view-salary-result', models);
+
+        // 時給計算モデルを初期化
+        salary.wage = 700;
+        salary.time = 10;
     }
 }
-

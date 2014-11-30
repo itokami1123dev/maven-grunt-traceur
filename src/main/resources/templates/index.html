@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>welcome my homepage!</title>
+    <title>oh my salary!</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
 <body>
@@ -10,13 +10,26 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
+            <h3 class="panel-title">時給の計算</h3>
         </div>
+
         <div class="panel-body">
-            Panel content
-            <div class="js-dramon"></div>
+            <div class="js-view-salary-input">
+                <label>
+                    時給:<input type="number" class="js-wage form-control" value="0"/>
+                </label>
+
+                <label>
+                    時間:<input type="number" class="js-time form-control" value="0"/>
+                </label>
+            </div>
         </div>
-        <div class="panel-footer">Panel footer</div>
+
+        <div class="panel-footer">
+            <div class="js-view-salary-result">
+                支給額：<span class="js-result">0</span>円
+            </div>
+        </div>
     </div>
 </div>
 
@@ -25,10 +38,9 @@
 <script src="node_modules/grunt-traceur/node_modules/traceur/bin/traceur-runtime.js"></script>
 <script src="js/app.min.js"></script>
 <script>
-    var MainApp = System.get('js/src/es5/main').MainApp;
     document.addEventListener("DOMContentLoaded", function () {
-        (new MainApp()).run();
+        var Main = System.get('js/src/es5/main').Main;
+        (new Main).run();
     }, false);
-
 </script>
 </html>
