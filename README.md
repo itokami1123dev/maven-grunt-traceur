@@ -103,8 +103,8 @@ class BaseModel {
 
 頭にexportをつけると他のファイルでimportできます。
 
-
-```JavaScript:BaseModel.js
+BaseModel.js
+```JavaScript
 export class BaseModel {
   constructor() {
     this.listner = [];
@@ -113,8 +113,45 @@ export class BaseModel {
 }
 ```
 
-```JavaScript:Salary.js
+Salary.js
+```JavaScript
 import {BaseModel} from './BaseModel';
+```
+
+#### 継承
+
+継承もできます。  
+今回はモデルの基本機能を継承した
+時給計算モデルを作成しました
+
+ES5
+```JavaScript
+var Salary = function() {
+  BaseModel.call(this)
+  this._wage = 0;
+  this._time = 0;
+};
+Salary.prototype = Object.create(BaseModel.protorype);
+Salary.ptorotype.constructor = Salary;
+Salary.ptorotype.compute = function() {
+  return this._wage * this._time;
+}
+// ... 省略...
+```
+
+ES6
+```JavaScript
+class Salary extends BaseModel {
+  constructor() {
+    super();
+    this._wage = 0;
+    this._time = 0;
+  }
+  compute() {
+    return this._wage * this._time;
+  }
+  // ... 省略 ...
+}
 ```
 
 このサンプルの起動方法
