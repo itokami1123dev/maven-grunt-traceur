@@ -1,4 +1,4 @@
-export class BaseCtrl {
+export class BaseView {
 
     /**
      * コンストラクタ

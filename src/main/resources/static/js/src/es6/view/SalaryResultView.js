@@ -1,6 +1,6 @@
-import {BaseCtrl} from './BaseCtrl';
+import {BaseView} from './BaseView';
 
-export class SalaryResultCtrl extends BaseCtrl {
+export class SalaryResultView extends BaseView {
     /**
      * classのコンストラクタ
      * @param {string} cssClassNm 管理対象にするDOMをcssのclass名で指定

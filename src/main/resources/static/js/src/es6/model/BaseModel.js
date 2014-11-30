@@ -2,7 +2,7 @@ export class BaseModel {
     constructor() {
         /**
          * 変更の通知先
-         * @type {BaseCtrl[]}
+         * @type {BaseView[]}
          */
         this.listner = [];
     }
