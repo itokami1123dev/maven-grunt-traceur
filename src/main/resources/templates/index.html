@@ -1,20 +1,32 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>welcome my homepage!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>welcome my homepage!</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1 th:text="'Welcome ' + ${message} + ' :)'"/>
 
-<div class="js-dramon"></div>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+            <div class="js-dramon"></div>
+        </div>
+        <div class="panel-footer">Panel footer</div>
+    </div>
+</div>
+
 
 </body>
 <script src="node_modules/grunt-traceur/node_modules/traceur/bin/traceur-runtime.js"></script>
 <script src="js/app.min.js"></script>
 <script>
     var MainApp = System.get('js/src/es5/main').MainApp;
-    document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("DOMContentLoaded", function () {
         (new MainApp()).run();
     }, false);
 
