@@ -4,21 +4,23 @@ export class BaseModel {
          * 変更の通知先
          * @type {BaseView[]}
          */
-        this.listner = [];
+        this.listeners = [];
     }
 
     /**
      * 通知先登録
-     * @param {function} callback
+     * @param {function} listener
      */
-    addListner(callback) {
-        this.listner.push(callback);
+    addListner(listener) {
+        this.listeners.push(listener);
     }
 
     /**
      * 通知
      */
     notifyListeners() {
-        this.listner.forEach(callback=>callback());
+        for (let listener of this.listeners) {
+            listener();
+        }
     }
 }

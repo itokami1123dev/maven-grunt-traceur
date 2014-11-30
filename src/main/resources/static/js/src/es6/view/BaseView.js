@@ -13,9 +13,9 @@ export class BaseView {
         this.el = document.getElementsByClassName(cssClassNm)[0];
 
         // データモデルの変更時にControllerに変更を通知する
-        Object.keys(models).forEach(
-                key => models[key].addListner(this.render.bind(this))
-        );
+        for (let key of Object.keys(models)) {
+            models[key].addListner(this.render.bind(this));
+        }
     }
 
     /**

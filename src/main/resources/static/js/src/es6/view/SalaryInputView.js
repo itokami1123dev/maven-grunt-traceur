@@ -19,10 +19,14 @@ export class SalaryInputView extends BaseView {
 
     setEvent() {
         this.wageView.addEventListener('change',
-                event=>this.salary.wage = this.wageView.value);
+            (event) => {
+                this.salary.wage = this.wageView.value;
+            }
+        );
 
         this.timeView.addEventListener('change',
-                event=>this.salary.time = this.timeView.value);
+                event => this.salary.time = this.timeView.value
+        );
     }
 
     /**

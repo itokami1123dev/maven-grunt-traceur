@@ -39,7 +39,7 @@ http://kangax.github.io/compat-table/es6/
 
 ### 3. 実際にサンプルを作って試してみました。
 
-#### アロー関数
+#### let と For-Of構文
 
 データモデルが変更時
 登録されているView(Controller)配列の
@@ -50,20 +50,63 @@ http://kangax.github.io/compat-table/es6/
 ES5
 ```JavaScript
 notifyListeners() {
-  this.listner.forEach(function (callback) {
-    callback();
-  })
+  this.listeners.forEach(function (listener) {
+    listener();
+  });
 }
 ```
 
 ES6
 ```JavaScript
 notifyListeners() {
-  this.listner.forEach(callback=>callback());
+  for (let listener of this.listeners) {
+    listener();
+  }
 }
 ```
 
-大分短く書けますね。
+let はブロック内のみに有効  
+for inはkey名をループするがfor ofは値でループできる
+
+#### アロー関数
+
+さっきのはアロー関数で書くこともできる
+
+ES5
+```JavaScript
+notifyListeners() {
+  this.listeners.forEach(function (listener) {
+    listener();
+  });
+}
+```
+
+ES6
+```JavaScript
+notifyListeners() {
+  this.listeners.forEach(
+    listener => listener()
+  );
+}
+```
+
+今回のサンプルではDOM操作イベント登録でつかっている
+
+```JavaScript
+setEvent() {
+  this.wageView.addEventListener('change',
+    (event) => {
+      this.salary.wage = this.wageView.value;
+    }
+  );
+
+  this.timeView.addEventListener('change',
+    event => this.salary.time = this.timeView.value
+  );
+}
+```
+
+引数のカッコや処理スコープの波カッコは省略できる
 
 
 #### クラス
@@ -131,7 +174,7 @@ var Salary = function() {
   this._wage = 0;
   this._time = 0;
 };
-Salary.prototype = Object.create(BaseModel.protorype);
+Salary.prototype = Object.create(BaseModel.prototype);
 Salary.ptorotype.constructor = Salary;
 Salary.ptorotype.compute = function() {
   return this._wage * this._time;
