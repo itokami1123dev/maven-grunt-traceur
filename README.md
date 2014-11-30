@@ -71,7 +71,7 @@ notifyListeners() {
 モデルクラスの基本となるクラスを作成  
 
 ES5
-```
+```JavaScript
 var BaseModel = function() {
     this.listner = [];
 };
@@ -83,7 +83,7 @@ BaseModel.prototype.addListner = function (callback) {
 ```
 
 ES6
-```
+```JavaScript
 class BaseModel {
   constructor() {
     this.listner = [];
@@ -95,6 +95,26 @@ class BaseModel {
 
   // ....省略 ...
 }
+```
+
+#### モジュール
+
+ベースとなるモデルクラスを実際に読み込みます
+
+頭にexportをつけると他のファイルでimportできます。
+
+
+```JavaScript:BaseModel.js
+export class BaseModel {
+  constructor() {
+    this.listner = [];
+  }
+  // ...省略...
+}
+```
+
+```JavaScript:Salary.js
+import {BaseModel} from './BaseModel';
 ```
 
 このサンプルの起動方法
