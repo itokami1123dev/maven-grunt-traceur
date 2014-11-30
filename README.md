@@ -197,6 +197,40 @@ class Salary extends BaseModel {
 }
 ```
 
+#### 引数にデフォルトのパラメータ  
+
+Viewクラスは第２引数を省略可能とします  
+その場合ES5だと..
+
+ES5
+```JavaScript
+var BaseView = function(cssClassNm, models) {
+  models = models || {};
+  this.el = document.getElementsByClassName(cssClassNm)[0];
+
+  // データモデルの変更時にControllerに変更を通知する
+  for (let key of Object.keys(models)) {
+    models[key].addListner(this.render.bind(this));
+  }
+}
+// ... 省略 ...
+```
+
+ES6
+```JavaScript
+class BaseView {
+  constructor(cssClassNm, models = {}) {
+    this.el = document.getElementsByClassName(cssClassNm)[0];
+
+    // データモデルの変更時にControllerに変更を通知する
+    for (let key of Object.keys(models)) {
+      models[key].addListner(this.render.bind(this));
+    }
+  }
+  // ... 省略 ...
+}
+```
+
 このサンプルの起動方法
 -------------------
 ```bash
