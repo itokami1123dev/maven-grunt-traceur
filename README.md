@@ -42,9 +42,12 @@ http://kangax.github.io/compat-table/es6/
 #### アロー関数
 
 データモデルが変更時
-登録されているController(View)配列の
-描画メソッドを呼ぶとき...
+登録されているView(Controller)配列の
+描画メソッドを呼ぶとき...  
+この例では*"this.listner"*が
+*"View描画メソッド"*の配列
 
+ES5
 ```JavaScript
 notifyListeners() {
   this.listner.forEach(function (callback) {
@@ -53,6 +56,7 @@ notifyListeners() {
 }
 ```
 
+ES6
 ```JavaScript
 notifyListeners() {
   this.listner.forEach(callback=>callback());
@@ -61,6 +65,37 @@ notifyListeners() {
 
 大分短く書けますね。
 
+
+#### クラス
+
+モデルクラスの基本となるクラスを作成  
+
+ES5
+```
+var BaseModel = function() {
+    this.listner = [];
+};
+
+BaseModel.prototype.addListner = function (callback) {
+  this.listner.push(callback);
+}
+// ....省略 ...
+```
+
+ES6
+```
+class BaseModel {
+  constructor() {
+    this.listner = [];
+  }
+
+  addListner(callback) {
+    this.listner.push(callback);
+  }
+
+  // ....省略 ...
+}
+```
 
 このサンプルの起動方法
 -------------------
