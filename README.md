@@ -208,12 +208,8 @@ var BaseView = function(cssClassNm, models) {
   models = models || {};
   this.el = document.getElementsByClassName(cssClassNm)[0];
 
-  // データモデルの変更時にControllerに変更を通知する
-  for (let key of Object.keys(models)) {
-    models[key].addListner(this.render.bind(this));
-  }
+  // ... 省略 ...
 }
-// ... 省略 ...
 ```
 
 ES6
@@ -222,12 +218,8 @@ class BaseView {
   constructor(cssClassNm, models = {}) {
     this.el = document.getElementsByClassName(cssClassNm)[0];
 
-    // データモデルの変更時にControllerに変更を通知する
-    for (let key of Object.keys(models)) {
-      models[key].addListner(this.render.bind(this));
-    }
-  }
   // ... 省略 ...
+  }
 }
 ```
 
