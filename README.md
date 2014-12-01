@@ -223,8 +223,25 @@ class BaseView {
 }
 ```
 
+### テンプレートリテラル
+
+バッククォートで囲った文字はテンプレートリテラルになる
+文字列中に変数を埋め込めます。
+
+ES6
+```JavaScript
+render() {
+  var pay = this.salary.compute().toLocaleString();
+  this.resultEl.textContent = `支給額：${pay}円`;
+}
+```
+
+> テンプレートリテラルが実装された  
+http://js-next.hatenablog.com/entry/2014/11/22/042055
+
 このサンプルの起動方法
 -------------------
+動作にはJava8とMaven、node.jsが必要です
 ```bash
 $ mvn clean compile
 

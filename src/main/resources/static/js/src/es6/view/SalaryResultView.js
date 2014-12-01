@@ -9,7 +9,7 @@ export class SalaryResultView extends BaseView {
     constructor(cssClassNm, models = {}) {
         super(cssClassNm, models);
 
-        this.resultView = this.find('js-result');
+        this.resultEl = this.find('js-result');
         this.salary = models.salary;
     }
 
@@ -18,7 +18,7 @@ export class SalaryResultView extends BaseView {
      * @override
      */
     render() {
-        this.resultView.textContent =
-            (this.salary.compute()).toLocaleString();
+        var pay = this.salary.compute().toLocaleString();
+        this.resultEl.textContent = `支給額：${pay}円`;
     }
 }
