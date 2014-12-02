@@ -239,6 +239,75 @@ render() {
 > テンプレートリテラルが実装された  
 http://js-next.hatenablog.com/entry/2014/11/22/042055
 
+### Promise
+
+モデルの初期情報取得のAjaxのとこで
+Promiseを使って見る
+
+ES6
+```JavaScript
+class ApiService {
+    constructor() {
+    }
+
+    call(url) {
+        var xhr = new XMLHttpRequest();
+
+        return new Promise((resolve, reject) => {
+            xhr.open('GET', url)
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState != 4 || xhr.status != 200) {
+                    return;
+                }
+                resolve(xhr.response);
+            }
+            xhr.send()
+        })
+    }
+}
+
+var api = new ApiService();
+
+api.call("hogehoge").then(
+    (response) => {
+      var {wage, time} = JSON.parse(response);
+      salary.wage = wage;
+      salary.time = time;
+    }
+);
+```
+
+こんな変数の初期化ができるみたい
+ES6
+```JavaScript
+var {wage, time} = JSON.parse(response);
+```
+
+ES5
+```JavaScript
+var obj = JSON.parse(response);
+var wage = obj.wage;
+var time = obj.time;
+```
+
+さらにオブジェクトの作成でショートカットがあるみたい
+ES6
+```JavaScript
+var salary = new Salary();
+var models = {
+  salary
+};
+```
+
+ES5
+```JavaScript
+var salary = new Salary();
+var models = {
+  salary: salary
+};
+```
+
+
 このサンプルの起動方法
 -------------------
 動作にはJava8とMaven、node.jsが必要です
