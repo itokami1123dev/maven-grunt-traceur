@@ -161,6 +161,75 @@ Salary.js
 import {BaseModel} from './BaseModel';
 ```
 
+何故だかコンパイル結果を結合(Gruntでconcat)しないと
+importで来ませんでした..外部ファイルできないのかな..調査不足...
+```JavaScript
+System.register("js/src/es5/model/BaseModel", [], function() {
+  "use strict";
+  var __moduleName = "js/src/es5/model/BaseModel";
+  function require(path) {
+    return $traceurRuntime.require("js/src/es5/model/BaseModel", path);
+  }
+  var BaseModel = function BaseModel() {
+    this.listeners = [];
+  };
+  ($traceurRuntime.createClass)(BaseModel, {
+    addListner: function(listener) {
+      this.listeners.push(listener);
+    },
+    notifyListeners: function() {
+      for (var $__1 = this.listeners[$traceurRuntime.toProperty(Symbol.iterator)](),
+          $__2; !($__2 = $__1.next()).done; ) {
+        var listener = $__2.value;
+        {
+          listener();
+        }
+      }
+    }
+  }, {});
+  return {get BaseModel() {
+      return BaseModel;
+    }};
+});
+System.register("js/src/es5/model/Salary", [], function() {
+  "use strict";
+  var __moduleName = "js/src/es5/model/Salary";
+  function require(path) {
+    return $traceurRuntime.require("js/src/es5/model/Salary", path);
+  }
+  var BaseModel = System.get("js/src/es5/model/BaseModel").BaseModel;
+  var Salary = function Salary() {
+    $traceurRuntime.superConstructor($Salary).call(this);
+    this._wage = 0;
+    this._time = 0;
+  };
+  var $Salary = Salary;
+  ($traceurRuntime.createClass)(Salary, {
+    compute: function() {
+      return this._wage * this._time;
+    },
+    get time() {
+      return this._time;
+    },
+    set time(time) {
+      this._time = time;
+      this.notifyListeners();
+    },
+    get wage() {
+      return this._wage;
+    },
+    set wage(wage) {
+      this._wage = wage;
+      this.notifyListeners();
+    }
+  }, {}, BaseModel);
+  return {get Salary() {
+      return Salary;
+    }};
+});
+```
+
+
 #### 継承
 
 継承もできます。  
