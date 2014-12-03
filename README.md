@@ -385,3 +385,6 @@ $ mvn clean compile
 
 $ mvn spring-boot:run
 ```
+
+ブラウザで起動
+http://localhost:8080/
